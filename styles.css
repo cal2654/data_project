@@ -56,4 +56,20 @@ html, body {
     background: #eee;
     margin-top: 2rem;
   }
+
+  @media (max-width: 600px) {
+    main {
+        padding: 1rem;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px auto;
+    }
+
+    svg {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
   
