@@ -20,6 +20,8 @@ html, body {
   }
   
   main {
+    max-width: 960px;
+    margin: auto;
     padding: 2rem;
     text-align: center;
     flex: 1;
