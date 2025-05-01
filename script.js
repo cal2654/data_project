@@ -1,10 +1,27 @@
-const width = 800, height = 400;
+(() => { const width = 800, height = 400;
 
-  d3.csv("nintendo_prices.csv").then(data => {
-  
+let containerId, csvFile;
+if (document.getElementById("graph-container")) {
+  containerId = "graph-container";
+  csvFile = "nintendo_prices.csv";
+} else if (document.getElementById("graph-container2")) {
+  containerId = "graph-container2";
+  csvFile = "nintendo_prices_inflation.csv";
+} else {
+  console.error("No valid graph container found on this page.");
+  return;
+}
+console.log("Using container:", containerId, "→ loading:", csvFile);
+
+// 2) Load the CSV
+d3.csv(csvFile)
+  .then(data => {
+    console.log("✅ CSV loaded, rows:", data.length);
+
+    // parse
     data.forEach(d => {
-        d.date = new Date(d.release_year);
-        d.close = +d.price_usd;
+      d.date = new Date(d.release_year);
+      d.close = +d.price_usd;
     });
   
 
@@ -59,19 +76,22 @@ const width = 800, height = 400;
         .style("display", "none");
 
     svg.selectAll("circle")
-        .data(data)
-        .join("circle")
-        .attr("cx", d => zx(d.date))
-        .attr("cy", d => y(d.close))
-        .attr("r", 4)
-        .attr("fill", "steelblue")
-        .on("mouseover", (event, d) => {
-            tooltip.style("display", "block")
-            .html(
-              `<strong>${d.console}</strong><br>` +
-              `${d.date.toLocaleDateString()}<br>` +
-              `Price: $${d.close.toFixed(2)}`
-            );          
+    const dots = svg.append("g")
+    .attr("class", "dots")
+    .selectAll("circle")
+    .data(data)
+    .join("circle")
+    .attr("r", 4)
+    .attr("fill", "steelblue")
+    .attr("cx", d => zx(d.date))
+    .attr("cy", d => y(d.close))
+    .on("mouseover", (event, d) => {
+        tooltip.style("display", "block")
+          .html(
+            `<strong>${d.console}</strong><br>` +
+            `${d.date.toLocaleDateString()}<br>` +
+            `Price: $${d.close.toFixed(2)}`
+          );
     })
         .on("mousemove", (event) => {
     tooltip
@@ -89,12 +109,15 @@ const width = 800, height = 400;
         zx.domain(domain);
         gx.transition(t).call(xAxis, zx);
         path.transition(t).attr("d", line);
+        dots.transition(t)
+          .attr("cx", d => zx(d.date))
+          .attr("cy", d => y(d.close));
       }
     });
   }
 
   const chartEl = chart();
-  document.getElementById("graph-container").appendChild(chartEl);
+  document.getElementById(containerId).appendChild(chartEl);
 
   const zoom = d3.zoom()
   .scaleExtent([1, 10])
@@ -105,4 +128,5 @@ const width = 800, height = 400;
   });
 
 d3.select(chartEl).call(zoom);
-  });
+});
+})();
