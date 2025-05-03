@@ -56,6 +56,10 @@ html, body {
     background: #eee;
     margin-top: 2rem;
   }
+  
+  .center-text {
+    text-align: center;
+  }
 
   @media (max-width: 600px) {
     body{
