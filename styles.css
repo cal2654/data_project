@@ -1,87 +1,89 @@
+/* Global styles for entire document */
 html, body {
     height: 100%;
-    margin: 0;
+    margin: 0; /* Removes default spacing */ 
     display: flex;
     flex-direction: column;
     font-family: 'Segoe UI', sans-serif;
     background: #f4f4f4;
   }
-  
+  /* Header styling */
   header {
     background-color: #444;
     color: white;
-    padding: 1rem;
-    text-align: center;
+    padding: 1rem; /* Add spacing inside header */
+    text-align: center; /* Center header text */
   }
-  
+  /* Headings for h1 and h2 */
   h1, h2 {
-    margin: 0.5em 0;
-    text-align: center;
+    margin: 0.5em 0; /* Vertical spacing */
+    text-align: center; /* Aligns headings in center */
   }
-  
+  /* Main content container */
   main {
-    max-width: 960px;
-    margin: auto;
-    padding: 2rem;
-    text-align: center;
-    flex: 1;
+    max-width: 960px; /* Limit width */
+    margin: auto; /* Center on page */
+    padding: 2rem; /* Inner spacing */
+    text-align: center; /* Align all main content text in center */
+    flex: 1; /* Take up remaining vertical space */
   }
-  
+  /* SVG graph area */
   svg {
     background: white;
     border: 1px solid #ccc;
     display: block;
-    margin: 20px auto;
+    margin: 20px auto; /* Center and space below header */
   }
-  
+  /* Navigation container */
   nav {
-    margin-top: 40px;
+    margin-top: 40px; /* Space above nav links */
     text-align: center;
   }
-  
+  /* Navigation links */
   nav a {
     color: #0066cc;
-    text-decoration: none;
-    margin: 0 10px;
+    text-decoration: none; /* Remove underline */
+    margin: 0 10px; /* Horizontal spacing between links */
     font-weight: bold;
   }
-  
+  /* Hover effect for navigation links */
   nav a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Add underline on hover */
   }
-  
+  /* Footer styling */
   footer {
     text-align: center;
     padding: 1rem;
     background: #eee;
-    margin-top: 2rem;
+    margin-top: 2rem; /* Space above footer */
   }
-  
+/* Utility class to center text */
   .center-text {
     text-align: center;
   }
+/* Layout for mobile devices */
 
   @media (max-width: 600px) {
     body{
-      font-size: 16px;
+      font-size: 16px; /* Increases the text size for readability */
     }
     main {
-        padding: 1rem;
+        padding: 1rem; /* Reduces the padding on small screens */
     }
 
     nav a {
-        display: block;
-        margin: 10px auto;
-        padding: 0.75 1em;
+        display: block;  /* Stack links vertically */
+        margin: 10px auto; /* Center links with spacing */
+        padding: 0.75 1em;  /* Add tap-friendly space */
     }
 
     svg {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 800px;
+        width: 100% !important;  /* Make chart scale to screen width */
+        height: auto !important; /* Maintain the aspect ratio */
+        max-width: 800px; /* Limit the max width */
     }
     h1, h2 {
-      font-size: 1.5em;
+      font-size: 1.5em; /* Reduce the heading size for small screens */
   }
 }
   
