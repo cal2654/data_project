@@ -1,5 +1,6 @@
+// ChatGPT was used to generate the majority of this JS file
+// I helped with some of it, but the LLM was used in a back and forth method
 (() => { const width = 800, height = 400;
-
 
 // This determines which container to use and which CSV to load based on the page
 let containerId, csvFile;
@@ -134,6 +135,7 @@ d3.csv(csvFile)
     });
   }
 
+    // This block was made by me with some assistance from ChatGPT
    // Create and append the chart to the correct container
   const chartEl = chart();
   document.getElementById(containerId).appendChild(chartEl);
